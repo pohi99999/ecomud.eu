@@ -4,15 +4,69 @@ import { createContext, useContext, useState, useCallback, type ReactNode } from
 import type { Locale } from './config';
 import { defaultLocale } from './config';
 import sk from './translations/sk';
+import cz from './translations/cz';
+import de from './translations/de';
+import hu from './translations/hu';
+import en from './translations/en';
 
-type TranslationType = typeof sk;
+type TranslationType = {
+  nav: { home: string; services: string; about: string; references: string; contact: string; cta: string };
+  hero: { title: string; titleAccent: string; subtitle: string; ctaServices: string; ctaContact: string };
+  intro: { text: string };
+  services: {
+    title: string;
+    subtitle: string;
+    bio: { title: string; short: string; slug: string };
+    dehydration: { title: string; short: string; slug: string };
+    automated: { title: string; short: string; slug: string };
+    smartlake: { title: string; short: string; slug: string };
+    survey: { title: string; short: string; slug: string };
+  };
+  why: {
+    title: string;
+    experience: { title: string; text: string };
+    biological: { title: string; text: string };
+    fullservice: { title: string; text: string };
+  };
+  references: { title: string; subtitle: string; cta: string };
+  about: {
+    title: string;
+    intro: string;
+    intro2: string;
+    values: {
+      title: string;
+      natural: { title: string; text: string };
+      innovation: { title: string; text: string };
+      reliability: { title: string; text: string };
+      fullcare: { title: string; text: string };
+    };
+    stats: {
+      years: string; yearsLabel: string;
+      team: string; teamLabel: string;
+      areas: string; areasLabel: string;
+      countries: string; countriesLabel: string;
+    };
+  };
+  contact: {
+    title: string;
+    subtitle: string;
+    form: {
+      name: string; email: string; phone: string; type: string;
+      typeOptions: { bio: string; dehydration: string; automated: string; smartlake: string; survey: string; other: string };
+      message: string; submit: string; success: string;
+    };
+    company: { name: string; address: string; city: string; ico: string };
+  };
+  footer: { rights: string; services: string };
+  chat: { title: string; placeholder: string; greeting: string; send: string };
+};
 
 const translations: Record<Locale, TranslationType> = {
   sk,
-  cz: sk, // Placeholder — will be replaced with actual Czech translations
-  de: sk, // Placeholder
-  hu: sk, // Placeholder
-  en: sk, // Placeholder
+  cz,
+  de,
+  hu,
+  en,
 };
 
 interface I18nContextType {
