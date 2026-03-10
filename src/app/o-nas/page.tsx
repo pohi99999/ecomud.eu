@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useTranslations } from '@/i18n/provider';
 import { Leaf, Lightbulb, ShieldCheck, Heart, Users, MapPin, Briefcase, Globe } from 'lucide-react';
+import HeroSection from '@/components/layout/HeroSection';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -31,7 +32,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-br from-[#1B4332] to-[#2D6A4F] py-20 lg:py-28">
+      <HeroSection images={['/images/heroes/bio-2.jpg', '/images/heroes/shore-1.jpg', '/images/heroes/mech-2.jpg']}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -42,7 +43,7 @@ export default function AboutPage() {
             <h1 className="text-4xl lg:text-5xl font-bold text-white">{t.about.title}</h1>
           </motion.div>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Intro */}
       <section className="py-16 lg:py-24 bg-[#FAFDF7]">

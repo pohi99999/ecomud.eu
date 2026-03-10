@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useTranslations } from '@/i18n/provider';
 import { Droplets, Factory, Cpu, Brain, Ruler, ArrowRight, CheckCircle } from 'lucide-react';
+import HeroSection from '@/components/layout/HeroSection';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -26,7 +27,7 @@ export default function ServicesPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-br from-[#1B4332] to-[#2D6A4F] py-20 lg:py-28">
+      <HeroSection images={['/images/heroes/bio-1.jpg', '/images/heroes/dehy-1.jpg', '/images/heroes/auto-1.jpg']}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -40,7 +41,7 @@ export default function ServicesPage() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Intro */}
       <section className="py-12 lg:py-16 bg-[#FAFDF7]">

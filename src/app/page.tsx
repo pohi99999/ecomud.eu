@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useTranslations } from '@/i18n/provider';
 import { Droplets, Factory, Cpu, Brain, Ruler, ArrowRight, Clock, Leaf, ShieldCheck } from 'lucide-react';
+import HeroSection from '@/components/layout/HeroSection';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -28,15 +29,8 @@ export default function HomePage() {
   return (
     <>
       {/* === HERO SECTION === */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-gradient-to-br from-[#1B4332] via-[#2D6A4F] to-[#1B4332]">
-        {/* Background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#40916C]/30 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#52B788]/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32 relative z-10">
+      <HeroSection video="/videos/hero-main.mp4" fullHeight>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="max-w-3xl">
             <motion.h1
               initial={{ opacity: 0, y: 40 }}
@@ -86,7 +80,7 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
         >
           <div className="w-6 h-10 rounded-full border-2 border-white/30 flex justify-center">
             <motion.div
@@ -96,7 +90,7 @@ export default function HomePage() {
             />
           </div>
         </motion.div>
-      </section>
+      </HeroSection>
 
       {/* === INTRO SECTION === */}
       <section className="py-16 lg:py-24 bg-[#FAFDF7]">

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations } from '@/i18n/provider';
 import { MapPin, Phone, Mail, Building } from 'lucide-react';
+import HeroSection from '@/components/layout/HeroSection';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -36,7 +37,7 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-br from-[#1B4332] to-[#2D6A4F] py-20 lg:py-28">
+      <HeroSection images={['/images/heroes/shore-2.jpg', '/images/heroes/bio-3.jpg', '/images/heroes/survey-3.jpg']}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -50,7 +51,7 @@ export default function ContactPage() {
             </p>
           </motion.div>
         </div>
-      </section>
+      </HeroSection>
 
       {/* Form + Info */}
       <section className="py-16 lg:py-24 bg-[#FAFDF7]">
