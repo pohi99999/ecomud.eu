@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send } from 'lucide-react';
 import { useTranslations } from '@/i18n/provider';
@@ -11,42 +11,124 @@ interface Message {
   content: string;
 }
 
-const knowledgeBase: Record<string, string[]> = {
-  'biologick|kal|iszap|biol': [
-    'Ponúkame biologickú úpravu kalov – prirodzenou cestou znižujeme organické zaťaženie jazier, priemyselných nádrží a hnojiskových zásobníkov. Bez bagrovania, špeciálnymi baktériovými kultúrami.',
-  ],
-  'odvodn|dehydrat|texti|vankúš': [
-    'Naše odvodňovacie systémy využívajú textilnú technológiu – gravitačné odvodňovacie vankúše a korámy, brehovú ochranu. Minimálna spotreba energie, jednoduché nasadenie.',
-  ],
-  'automat|bagr|nádrž|diaľkov': [
-    'Automatizovaná údržba nádrží zahŕňa diaľkovo ovládané bagre pre odstraňovanie kalov v priemyselných nádržiach – aj tam, kde je ľudský zásah rizikový alebo neefektívny.',
-  ],
-  'smart|lake|jazero|okos|monitor|AI|digitáln': [
-    'Smart Lake systém je naša AI-založená platforma pre manažment vodných telies. Obsahuje digitálny denník, interaktívnu mapu, správu úloh a inteligentný asistent. Neskôr pridáme IoT senzory a prediktívnu analytiku.',
-  ],
-  'prieskum|diagnostik|meranie|vzork|ultrazvu': [
-    'Ponúkame profesionálne prieskumy a diagnostiku: bodové merania hrúbky kalov, ultrazvukové zobrazovanie dna, odber vzoriek a kompletné diagnostické správy.',
-  ],
-  'cen|ponuk|stoj|koľko|pric': [
-    'Pre cenovú ponuku nás prosím kontaktujte cez formulár na stránke /kontakt alebo na info@ecomud.eu. Každý projekt je individuálny, radi pripravíme ponuku na mieru.',
-  ],
-  'kontakt|adres|telefón|email': [
-    'ECOMUD group s.r.o., Tulipánova 990/36, 986 01 Fiľakovo, Slovensko. IČO: 51028379. E-mail: info@ecomud.eu. Použite aj náš kontaktný formulár na stránke /kontakt.',
-  ],
-  'kto|o nás|tím|skúsen|rok': [
-    'ECOMUD group s.r.o. vznikla v roku 2017. Náš medzinárodný tím má 20+ rokov skúseností v úprave kalov, vodnom hospodárstve a environmentálnych technológiách. Pôsobíme v 3 krajinách: Slovensko, Česko, Rakúsko.',
-  ],
-};
+// Multilingual keyword patterns mapped to answer keys
+const topicPatterns: { keywords: string[]; answerKey: string }[] = [
+  {
+    keywords: [
+      // general services
+      'služb', 'sluzb', 'slu\u017eb', 'ponúk', 'ponuk', 'nabíz', 'nabiz',
+      'dienstleist', 'angebot', 'bieten',
+      'szolgáltat', 'szolgaltat', 'kínál', 'kinal',
+      'service', 'offer', 'provide',
+      'čo robíte', 'co robite', 'co děláte', 'was machen', 'mit csinálnak', 'what do you do',
+    ],
+    answerKey: 'services_overview',
+  },
+  {
+    keywords: [
+      'biologick', 'biol\u00f3g', 'biológ', 'biolog',
+      'kal', 'schlam', 'sludge', 'iszap',
+      'baktéri', 'bakteri', 'bakterien', 'bacteria',
+      'jazier', 'jazero', 'jezer', 'jezero', 'see', 'lake', 'tav', 'tó',
+    ],
+    answerKey: 'bio',
+  },
+  {
+    keywords: [
+      'odvodn', 'odvod\u0148', 'entwässer', 'entwasser', 'dewat',
+      'dehidrat', 'víztelen', 'viztelen',
+      'textiln', 'textil', 'geotextil',
+      'vankúš', 'vankus', 'polštář', 'polstar', 'kissen', 'bag', 'párna', 'parna',
+      'brehov', 'břehov', 'ufer', 'shore', 'partv',
+    ],
+    answerKey: 'dehydration',
+  },
+  {
+    keywords: [
+      'automat', 'diaľkov', 'dialkovo', 'dálkov', 'dalkove', 'ferngest', 'remote',
+      'távvez', 'tavvez',
+      'bagr', 'bagger', 'dredg', 'kotr',
+      'nádrž', 'nadrz', 'becken', 'basin', 'medenc',
+    ],
+    answerKey: 'automated',
+  },
+  {
+    keywords: [
+      'smart', 'lake', 'okos', 'okos-tó', 'okosto',
+      'digitáln', 'digitaln', 'digital',
+      'platforma', 'platform',
+      'ai-asist', 'ai asist', 'ki-assist', 'ai assist', 'assziszt',
+      'denník', 'dennik', 'deník', 'denik', 'tagebuch', 'logbook', 'napló', 'naplo',
+      'monitoring', 'monitor',
+    ],
+    answerKey: 'smartlake',
+  },
+  {
+    keywords: [
+      'prieskum', 'průzkum', 'pruzkum', 'untersuch', 'survey', 'felmér', 'felmer',
+      'diagnostik', 'diagnos',
+      'ultrazvuk', 'ultraschall', 'ultrasonic', 'ultrahang',
+      'meranie', 'měření', 'mereni', 'messung', 'measurement', 'mérés', 'meres',
+      'vzork', 'vzoriek', 'vzorek', 'probe', 'sample', 'minta',
+    ],
+    answerKey: 'survey',
+  },
+  {
+    keywords: [
+      'kontakt', 'kontaktov', 'contact', 'erreichen', 'elér', 'eler',
+      'adres', 'address', 'anschrift', 'cím', 'cim',
+      'email', 'e-mail', 'mail',
+      'telefón', 'telefon', 'phone', 'tel',
+      'kde ste', 'kde jste', 'wo sind', 'where are', 'hol van',
+    ],
+    answerKey: 'contact',
+  },
+  {
+    keywords: [
+      'o nás', 'o nas', 'über uns', 'uber uns', 'about us', 'rólunk', 'rolunk',
+      'kto ste', 'kdo jste', 'wer sind', 'who are', 'kik vagytok', 'ki az ecomud',
+      'tím', 'tým', 'team', 'csapat',
+      'skúsenos', 'zkušenos', 'erfahrung', 'experience', 'tapasztal',
+      'histór', 'história', 'historie', 'history', 'történet', 'tortenet',
+      'krajin', 'zem', 'country', 'länder', 'ország', 'orszag',
+      'hodnot', 'werte', 'value', 'érték', 'ertek',
+    ],
+    answerKey: 'about',
+  },
+  {
+    keywords: [
+      'cen', 'cena', 'ponuk', 'ponúk', 'nabíd', 'nabid',
+      'stoj', 'koľko', 'kolko', 'kolik',
+      'preis', 'kosten', 'angebot',
+      'price', 'cost', 'quote', 'how much',
+      'ár', 'mennyibe', 'árajánlat', 'arajanlat',
+    ],
+    answerKey: 'pricing',
+  },
+  {
+    keywords: [
+      'referenc', 'reference', 'referenz',
+      'projekt', 'project',
+      'výsledok', 'vysledok', 'výsledek', 'vysledek', 'ergebnis', 'result', 'eredmény', 'eredmeny',
+      'realizáci', 'realizaci', 'realizac',
+    ],
+    answerKey: 'references',
+  },
+];
 
-function findAnswer(query: string): string {
-  const q = query.toLowerCase();
-  for (const [pattern, answers] of Object.entries(knowledgeBase)) {
-    const keywords = pattern.split('|');
-    if (keywords.some((kw) => q.includes(kw))) {
-      return answers[0];
+function findAnswerKey(query: string): string | null {
+  const q = query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const qOriginal = query.toLowerCase();
+
+  for (const topic of topicPatterns) {
+    for (const kw of topic.keywords) {
+      const kwNorm = kw.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      if (q.includes(kwNorm) || qOriginal.includes(kw)) {
+        return topic.answerKey;
+      }
     }
   }
-  return 'Ďakujem za otázku! Bohužiaľ, na túto tému nemám konkrétnu odpoveď. Odporúčam kontaktovať nás priamo cez formulár na stránke /kontakt alebo na info@ecomud.eu – radi vám pomôžeme osobne.';
+  return null;
 }
 
 export default function ChatWidget() {
@@ -54,6 +136,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslations();
 
@@ -67,20 +150,29 @@ export default function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+  const processMessage = useCallback((text: string) => {
+    const answerKey = findAnswerKey(text);
+    if (answerKey && t.chat.answers[answerKey]) {
+      return t.chat.answers[answerKey];
+    }
+    return t.chat.fallback;
+  }, [t]);
 
-    const userMessage = input.trim();
+  const handleSend = useCallback((text?: string) => {
+    const userMessage = (text || input).trim();
+    if (!userMessage) return;
+
     setInput('');
+    setShowSuggestions(false);
     setMessages((prev) => [...prev, { role: 'user', content: userMessage }]);
     setIsTyping(true);
 
     setTimeout(() => {
-      const answer = findAnswer(userMessage);
+      const answer = processMessage(userMessage);
       setMessages((prev) => [...prev, { role: 'assistant', content: answer }]);
       setIsTyping(false);
-    }, 800 + Math.random() * 700);
-  };
+    }, 600 + Math.random() * 600);
+  }, [input, processMessage]);
 
   return (
     <>
@@ -109,7 +201,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] h-[500px] max-h-[calc(100vh-6rem)] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
+            className="fixed bottom-6 right-6 z-50 w-[380px] max-w-[calc(100vw-2rem)] h-[520px] max-h-[calc(100vh-6rem)] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="bg-[#1B4332] text-white p-4 flex items-center justify-between flex-shrink-0">
@@ -148,7 +240,7 @@ export default function ChatWidget() {
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                    className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed whitespace-pre-line ${
                       msg.role === 'user'
                         ? 'bg-[#1B4332] text-white rounded-br-sm'
                         : 'bg-[#F0F7F0] text-[#1a1a2e] rounded-bl-sm'
@@ -158,6 +250,22 @@ export default function ChatWidget() {
                   </div>
                 </div>
               ))}
+
+              {/* Quick suggestion chips */}
+              {showSuggestions && messages.length <= 1 && (
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {t.chat.suggestions.map((suggestion, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleSend(suggestion)}
+                      className="text-xs px-3 py-1.5 rounded-full border border-[#40916C]/30 text-[#2D6A4F] hover:bg-[#F0F7F0] hover:border-[#40916C] transition-all"
+                    >
+                      {suggestion}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="bg-[#F0F7F0] px-4 py-3 rounded-2xl rounded-bl-sm">

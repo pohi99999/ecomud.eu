@@ -210,8 +210,27 @@ const en = {
   chat: {
     title: 'ECOMUD Assistant',
     placeholder: 'Ask about our services...',
-    greeting: 'Hello! I am the ECOMUD assistant. I can help you with information about our services in sludge treatment, biological water treatment, dewatering systems, Smart Lake platform and diagnostics. How can I help you?',
+    greeting: 'Hello! I am the ECOMUD assistant. I can help you with information about our services – biological sludge treatment, dewatering systems, automated maintenance, Smart Lake platform and diagnostics. How can I help you?',
     send: 'Send',
+    suggestions: [
+      'What services do you offer?',
+      'What is Smart Lake?',
+      'How to contact you?',
+      'Who is ECOMUD?',
+    ],
+    fallback: 'Thank you for your question! Unfortunately, I don\u2019t have a specific answer on this topic. I recommend contacting us directly via the form on /kontakt or at info@ecomud.eu.',
+    answers: {
+      services_overview: 'ECOMUD offers 5 main services:\n\n1\ufe0f\u20e3 Biological sludge treatment \u2013 natural reduction of organic load\n2\ufe0f\u20e3 Dewatering systems \u2013 textile-based technology\n3\ufe0f\u20e3 Automated basin maintenance \u2013 remote-controlled dredgers\n4\ufe0f\u20e3 Smart Lake system \u2013 AI platform for water body management\n5\ufe0f\u20e3 Surveys and diagnostics \u2013 ultrasonic measurements, lab analyses\n\nWhich service would you like to learn more about?',
+      bio: 'Biological sludge treatment is our main service. We naturally reduce the organic load of lakes, industrial basins and slurry tanks. Without dredging, using special bacterial cultures.\n\nServices: lake treatment, industrial basins, slurry tanks, canal deodorization, irrigation water quality.\n\nFor: municipalities, fisheries, industrial operators, farms, wastewater plants.',
+      dehydration: 'Our dewatering systems use textile technology \u2013 gravity dewatering bags and troughs, shore protection.\n\nServices: dewatering bags, troughs and containers, textile systems, shore protection, bed stabilization.\n\nFor: construction companies, water management, municipalities, wastewater plants, mining.',
+      automated: 'Automated basin maintenance includes remote-controlled dredgers for sludge removal in industrial basins.\n\nServices: automated dredging, remote work in hazardous environments, regular maintenance programs, sludge logistics.\n\nFor: chemical and petrochemical plants, power stations, metal processing, wastewater plants.',
+      smartlake: 'Smart Lake system is our AI-based water body management platform:\n\n\u2022 Digital logbook\n\u2022 Interactive map\n\u2022 Task management and reminders\n\u2022 AI assistant\n\u2022 Report generation\n\nFuture: IoT sensors, predictive analytics, fishing tourism module.',
+      survey: 'Professional surveys and diagnostics:\n\n\u2022 Point sludge thickness measurement\n\u2022 Ultrasonic bed imaging (3D models)\n\u2022 Water and sludge sampling\n\u2022 Bed morphological mapping\n\u2022 Diagnostic reports with recommendations\n\nFor all sectors.',
+      contact: 'ECOMUD group s.r.o.\nTulip\u00e1nova 990/36\n986 01 Fi\u013eakovo, Slovakia\nI\u010cO: 51028379\n\n\ud83d\udce7 E-mail: info@ecomud.eu\n\nAlso use our contact form on /kontakt.',
+      about: 'ECOMUD group s.r.o. was founded in 2017. Our international team has 20+ years of experience.\n\n\ud83d\udc65 8 team members\n\ud83c\udf0d 3 countries (Slovakia, Czech Republic, Austria)\n\u2705 5 service areas\n\nOur values: natural solutions, innovation, reliability, comprehensive care.',
+      pricing: 'Every project is unique. Contact us via /kontakt or info@ecomud.eu \u2013 we\'ll prepare a customized quote.',
+      references: 'Our references span across Central Europe:\n\n\u2022 Biological treatment of 12 ha lake \u2013 40% sludge reduction in 6 months\n\u2022 Industrial sedimentation basin \u2013 safe automated maintenance\n\u2022 Dewatering system for wastewater plant \u2013 70% water content reduction\n\u2022 Smart Lake pilot \u2013 digitalization of 15 years of data\n\nMore on /referencie.',
+    },
   },
 } as const;
 

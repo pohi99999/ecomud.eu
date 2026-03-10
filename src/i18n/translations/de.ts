@@ -210,8 +210,27 @@ const de = {
   chat: {
     title: 'ECOMUD Assistent',
     placeholder: 'Fragen Sie nach unseren Dienstleistungen...',
-    greeting: 'Guten Tag! Ich bin der ECOMUD-Assistent. Ich helfe Ihnen mit Informationen zu unseren Dienstleistungen in den Bereichen Schlammbehandlung, biologische Wasseraufbereitung, Entwässerungssysteme, Smart Lake Plattform und Diagnostik. Wie kann ich Ihnen helfen?',
+    greeting: 'Guten Tag! Ich bin der ECOMUD-Assistent. Ich helfe Ihnen mit Informationen zu unseren Dienstleistungen – biologische Schlammbehandlung, Entwässerungssysteme, automatisierte Wartung, Smart Lake Plattform und Diagnostik. Wie kann ich Ihnen helfen?',
     send: 'Absenden',
+    suggestions: [
+      'Welche Dienstleistungen bieten Sie an?',
+      'Was ist Smart Lake?',
+      'Wie kann ich Sie kontaktieren?',
+      'Wer ist ECOMUD?',
+    ],
+    fallback: 'Danke für Ihre Frage! Zu diesem Thema habe ich leider keine spezifische Antwort. Ich empfehle, uns direkt über das Formular auf /kontakt oder unter info@ecomud.eu zu kontaktieren.',
+    answers: {
+      services_overview: 'ECOMUD bietet 5 Hauptdienstleistungen:\n\n1\ufe0f⃣ Biologische Schlammbehandlung – natürliche Reduzierung der organischen Belastung\n2\ufe0f⃣ Entwässerungssysteme – textilbasierte Technologie\n3\ufe0f⃣ Automatisierte Beckenwartung – ferngesteuerte Bagger\n4\ufe0f⃣ Smart Lake System – KI-Plattform für Gewässermanagement\n5\ufe0f⃣ Untersuchungen und Diagnostik – Ultraschallmessungen, Laboranalysen\n\nÜber welche Dienstleistung möchten Sie mehr erfahren?',
+      bio: 'Biologische Schlammbehandlung ist unsere Hauptdienstleistung. Wir reduzieren natürlich die organische Belastung von Seen, Industriebecken und Güllelagern.\n\nLeistungen: Seenaufbereitung, Industriebecken-Pflege, Güllelager-Behandlung, Kanaldesodorierung, Bewässerungswasserqualität.\n\nFür: Gemeinden, Fischereiwirtschaften, Industriebetreiber, Landwirte, Kläranlagen.',
+      dehydration: 'Unsere Entwässerungssysteme nutzen Textiltechnologie – Gravitationsentwässerungskissen und -rinnen, Uferschutz.\n\nLeistungen: Entwässerungskissen, Rinnen und Container, textile Systeme, Uferschutz, Sohlstabilisierung.\n\nFür: Bauunternehmen, Wasserwirtschaft, Gemeinden, Kläranlagen, Bergbau.',
+      automated: 'Automatisierte Beckenwartung umfasst ferngesteuerte Bagger zur Schlammbeseitigung in Industriebecken.\n\nLeistungen: automatisiertes Baggern, Fernarbeiten in gefährlicher Umgebung, regelmäßige Wartungsprogramme, Schlammlogistik.\n\nFür: Chemie- und Petrochemieanlagen, Kraftwerke, Metallverarbeitung, Kläranlagen.',
+      smartlake: 'Smart Lake System ist unsere KI-basierte Gewässermanagement-Plattform:\n\n• Digitales Tagebuch\n• Interaktive Karte\n• Aufgabenverwaltung und Erinnerungen\n• KI-Assistent\n• Berichtserstellung\n\nZukunft: IoT-Sensoren, prädiktive Analytik, Fischereitourismus-Modul.',
+      survey: 'Professionelle Untersuchungen und Diagnostik:\n\n• Punktuelle Schlammdickenmessung\n• Ultraschall-Sohlbildgebung (3D-Modelle)\n• Probenentnahme\n• Morphologische Sohlkartierung\n• Diagnostische Berichte mit Empfehlungen\n\nFür alle Sektoren.',
+      contact: 'ECOMUD group s.r.o.\nTulipánova 990/36\n986 01 Fiľakovo, Slowakei\nIČO: 51028379\n\n📧 E-Mail: info@ecomud.eu\n\nNutzen Sie auch unser Kontaktformular auf /kontakt.',
+      about: 'ECOMUD group s.r.o. wurde 2017 gegründet. Unser internationales Team hat 20+ Jahre Erfahrung.\n\n👥 8 Teammitglieder\n🌍 3 Länder (Slowakei, Tschechien, Österreich)\n✅ 5 Servicebereiche\n\nUnsere Werte: natürliche Lösungen, Innovation, Zuverlässigkeit, umfassende Betreuung.',
+      pricing: 'Jedes Projekt ist individuell. Kontaktieren Sie uns über /kontakt oder info@ecomud.eu – wir erstellen gerne ein maßgeschneidertes Angebot.',
+      references: 'Unsere Referenzen umfassen Projekte in ganz Mitteleuropa:\n\n• Biologische Aufbereitung eines 12 ha Sees – 40% Schlammreduktion in 6 Monaten\n• Industrielles Sedimentationsbecken – sichere automatisierte Wartung\n• Entwässerungssystem für Kläranlage – 70% Wassergehaltsreduzierung\n• Smart Lake Pilot – Digitalisierung von 15 Jahren Daten\n\nMehr auf /referencie.',
+    },
   },
 } as const;
 

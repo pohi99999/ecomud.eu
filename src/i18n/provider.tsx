@@ -69,7 +69,15 @@ type TranslationType = {
     company: { name: string; address: string; city: string; ico: string };
   };
   footer: { rights: string; services: string };
-  chat: { title: string; placeholder: string; greeting: string; send: string };
+  chat: {
+    title: string;
+    placeholder: string;
+    greeting: string;
+    send: string;
+    suggestions: readonly string[];
+    fallback: string;
+    answers: Record<string, string>;
+  };
 };
 
 const translations: Record<Locale, TranslationType> = {

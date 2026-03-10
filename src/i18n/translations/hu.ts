@@ -208,8 +208,27 @@ const hu = {
   chat: {
     title: 'ECOMUD Asszisztens',
     placeholder: 'Kérdezzen szolgáltatásainkról...',
-    greeting: 'Üdvözlöm! Az ECOMUD asszisztens vagyok. Segítek Önnek az iszapkezelési, biológiai vízkezelési, dehidratálási, Okos-tó platform és diagnosztikai szolgáltatásainkkal kapcsolatos kérdéseiben. Miben segíthetek?',
+    greeting: 'Üdvözlöm! Az ECOMUD asszisztens vagyok. Segítek Önnek szolgáltatásainkkal kapcsolatos kérdéseiben – biológiai iszapkezelés, dehidratálási rendszerek, automatizált karbantartás, Okos-tó platform és diagnosztika. Miben segíthetek?',
     send: 'Küldés',
+    suggestions: [
+      'Milyen szolgáltatásokat kínálnak?',
+      'Mi az az Okos-tó?',
+      'Hogyan érhetők el?',
+      'Ki az ECOMUD?',
+    ],
+    fallback: 'Köszönöm a kérdést! Erről a témáról sajnos nincs konkrét válaszom. Javaslom, hogy lépjen velünk kapcsolatba a /kontakt oldalon található űrlapon vagy az info@ecomud.eu címen.',
+    answers: {
+      services_overview: 'Az ECOMUD 5 fő szolgáltatást kínál:\n\n1\ufe0f⃣ Biológiai iszapkezelés – tavak és medencék természetes tisztítása\n2\ufe0f⃣ Dehidratálási rendszerek – textil alapú víztelenítés\n3\ufe0f⃣ Automatizált medencekezelés – távvezérelt kotrógépek\n4\ufe0f⃣ Okos-tó rendszer – AI alapú tómenedzsment\n5\ufe0f⃣ Felmérések és diagnosztika – ultrahangos mérések, laborvizsgálatok\n\nMelyi kről szeretné tudni többet?',
+      bio: 'A biológiai iszapkezelés a fő szolgáltatásunk. Természetes úton csökkentjük a tavak, ipari medencék és trágyatárolók szervesanyag-terhelését. Kotrás nélkül, biológiai hatóanyagokkal.\n\nSzolgáltatások: tavak kezelése, ipari medencék, trágyatárolók, csatornaszagtalanítás, öntözővíz javítása.\n\nKiknek: önkormányzatok, tógazdalkodók, ipari üzemeltetők, mezőgazdasági vállalkozások, szennyvíztisztítók.',
+      dehydration: 'Dehidratálási rendszereink textil technológiát használnak – gravitációs dehidratáló párnák és vályúk, partvédelem.\n\nSzolgáltatások: dehidratáló párnák, vályúk és konténerek, textilrendszerek, partvédelem, mederstabilizálás.\n\nKiknek: építőipari cégek, vízügyi igazgatóságok, önkormányzatok, szennyvíztisztítók, bányavállalatok.',
+      automated: 'Az automatizált medencekezelés távvezérelt kotrógépeket használ ipari medencék iszapjának eltávolítására.\n\nSzolgáltatások: automatizált kotrás, távvezérelt munka veszélyes környezetben, rendszeres karbantartás, iszaplogisztika.\n\nKiknek: vegyipari üzemek, erőművek, fémfeldolgozók, szennyvíztisztítók.',
+      smartlake: 'Az Okos-tó rendszer AI-alapú tómenedzsment platform:\n\n• Digitális napló\n• Interaktív térkép\n• Feladatkezelés és emlékeztetők\n• AI-asszisztens\n• Jelentéskészítés\n\nJövő: IoT szenzorok, prediktív analitika, horgászturisztikai modul.',
+      survey: 'Professzionális felmérések és diagnosztika:\n\n• Pontszerű iszapvastagság-mérés\n• Ultrahangos mederképalkotás (3D)\n• Víz- és iszapmintavétel\n• Meder morfológiai feltérképezés\n• Diagnosztikai jelentések ajánlásokkal\n\nMinden szektornak.',
+      contact: 'ECOMUD group s.r.o.\nTulipánova 990/36\n986 01 Fiľakovo (Fülek), Szlovákia\nIČO: 51028379\n\n📧 E-mail: info@ecomud.eu\n\nHasználja kapcsolatfelvételi űrlapunkat a /kontakt oldalon.',
+      about: 'Az ECOMUD group s.r.o. 2017-ben alakult. Nemzetközi csapatunk 20+ év tapasztalattal rendelkezik.\n\n👥 8 fős csapat\n🌍 3 ország (Szlovákia, Csehország, Ausztria)\n✅ 5 szolgáltatási terület\n\nÉrtékeink: természetes megoldások, innováció, megbízhatóság, teljes körű gondoskodás.',
+      pricing: 'Minden projekt egyedi, ezért személyre szabott árajánlatot készítünk. Lépjen velünk kapcsolatba a /kontakt oldalon vagy az info@ecomud.eu címen.',
+      references: 'Referenciáink Közép-Európa szerte:\n\n• 12 ha-os tó biológiai kezelése – 40%-os iszapcsökkenés 6 hónap alatt\n• Ipari ülepítőmedence – biztonságos automatizált karbantartás\n• Dehidratáló rendszer szennyvíztisztítóhoz – 70%-os víztartalom-csökkenés\n• Okos-tó pilot – 15 év adat digitalizálása\n\nTovábbiak a /referencie oldalon.',
+    },
   },
 } as const;
 

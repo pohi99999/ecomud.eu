@@ -210,8 +210,27 @@ const cz = {
   chat: {
     title: 'ECOMUD Asistent',
     placeholder: 'Zeptejte se na naše služby...',
-    greeting: 'Dobrý den! Jsem ECOMUD asistent. Pomohu vám s informacemi o našich službách v oblasti úpravy kalů, biologické úpravy vod, odvodňovacích systémů, Smart Lake platformy a diagnostiky. Jak vám mohu pomoci?',
+    greeting: 'Dobrý den! Jsem ECOMUD asistent. Pomohu vám s informacemi o našich službách – biologická úprava kalů, odvodňovací systémy, automatizovaná údržba, Smart Lake platforma a diagnostika. Jak vám mohu pomoci?',
     send: 'Odeslat',
+    suggestions: [
+      'Jaké služby nabízíte?',
+      'Co je Smart Lake?',
+      'Jak vás kontaktovat?',
+      'Kdo je ECOMUD?',
+    ],
+    fallback: 'Děkuji za otázku! Na toto téma nemám konkrétní odpověď. Doporučuji kontaktovat nás přímo přes formulář na stránce /kontakt nebo na info@ecomud.eu – rádi vám pomůžeme osobně.',
+    answers: {
+      services_overview: 'ECOMUD nabízí 5 hlavních služeb:\n\n1\ufe0f⃣ Biologická úprava kalů – přirozená redukce organického zatížení jezer a nádrží\n2\ufe0f⃣ Odvodňovací systémy – textilní technologie, gravitační odvodnění\n3\ufe0f⃣ Automatizovaná údržba nádrží – dálkově ovládané bagry\n4\ufe0f⃣ Smart Lake systém – AI platforma pro management vodních těles\n5\ufe0f⃣ Průzkumy a diagnostika – ultrazvuková měření, laboratorní analýzy\n\nO které službě se chcete dozvědět více?',
+      bio: 'Biologická úprava kalů je naše hlavní služba. Přirozenou cestou snižujeme organické zatížení jezer, průmyslových nádrží a hnojištních zásobníků.\n\nSlužby: úprava jezer, průmyslových nádrží, hnojištních zásobníků, dezodorace kanálů, zlepšení kvality zavlažovací vody.\n\nPro koho: samosprávy, rybářská hospodářství, průmysloví provozovatelé, zemědělské podniky, ČOV.',
+      dehydration: 'Naše odvodňovací systémy využívají textilní technologii – gravitační odvodňovací polštáře a koryta, břehovou ochranu.\n\nSlužby: odvodňovací polštáře, koryta a kontejnery, textilní systémy, břehová ochrana, stabilizace dna.\n\nPro koho: stavební firmy, vodohospodářské správy, samosprávy, ČOV, důlní společnosti.',
+      automated: 'Automatizovaná údržba nádrží zahrnuje dálkově ovládané bagry pro odstraňování kalů v průmyslových nádržích.\n\nSlužby: automatizované bagrování, dálkově ovládaná práce, pravidelné programy údržby, logistika nakládání s kaly.\n\nPro koho: chemické a petrochemické závody, elektrárny, kovozpracující podniky, ČOV.',
+      smartlake: 'Smart Lake systém je AI-založená platforma pro management vodních těles:\n\n• Digitální deník\n• Interaktivní mapa\n• Správa úkolů a upomínky\n• AI-asistent\n• Generování zpráv\n\nBudoucnost: IoT senzory, prediktivní analytika, modul rybářského turismu.',
+      survey: 'Nabízíme profesionální průzkumy a diagnostiku:\n\n• Bodové měření tloušťky kalů\n• Ultrazvukové zobrazování dna (3D modely)\n• Odběr vzorků vody a kalů\n• Dnové morfologické mapování\n• Diagnostické zprávy s doporučeními\n\nPro všechny sektory.',
+      contact: 'ECOMUD group s.r.o.\nTulipánova 990/36\n986 01 Fiľakovo, Slovensko\nIČO: 51028379\n\n📧 E-mail: info@ecomud.eu\n\nPoužijte také náš kontaktní formulář na stránce /kontakt.',
+      about: 'ECOMUD group s.r.o. vznikla v roce 2017. Náš mezinárodní tým má 20+ let zkušeností.\n\n👥 8členný tým\n🌍 3 země (Slovensko, Česko, Rakousko)\n✅ 5 oblastí služeb\n\nNaše hodnoty: přírodní řešení, inovace, spolehlivost, komplexní péče.',
+      pricing: 'Každý projekt je individuální. Kontaktujte nás přes formulář na /kontakt nebo na info@ecomud.eu – rádi připravíme nabídku na míru.',
+      references: 'Naše reference zahrnují projekty po celé střední Evropě:\n\n• Biologická úprava 12 ha jezera – 40% redukce kalů za 6 měsíců\n• Průmyslová sedimentační nádrž – bezpečná automatizovaná údržba\n• Odvodňovací systém pro ČOV – 70% redukce vodního obsahu\n• Smart Lake pilot – digitalizace 15 let dat\n\nVíce na stránce /referencie.',
+    },
   },
 } as const;
 
