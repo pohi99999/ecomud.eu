@@ -16,11 +16,16 @@ type TranslationType = {
   services: {
     title: string;
     subtitle: string;
-    bio: { title: string; short: string; slug: string };
-    dehydration: { title: string; short: string; slug: string };
-    automated: { title: string; short: string; slug: string };
-    smartlake: { title: string; short: string; slug: string };
-    survey: { title: string; short: string; slug: string };
+    more: string;
+    introDetail: string;
+    detailsLabel: string;
+    targetLabel: string;
+    futureLabel: string;
+    bio: { title: string; short: string; slug: string; items: readonly string[]; target: string };
+    dehydration: { title: string; short: string; slug: string; items: readonly string[]; target: string };
+    automated: { title: string; short: string; slug: string; items: readonly string[]; target: string };
+    smartlake: { title: string; short: string; slug: string; items: readonly string[]; target: string; future: string };
+    survey: { title: string; short: string; slug: string; items: readonly string[]; target: string };
   };
   why: {
     title: string;
@@ -28,7 +33,13 @@ type TranslationType = {
     biological: { title: string; text: string };
     fullservice: { title: string; text: string };
   };
-  references: { title: string; subtitle: string; cta: string };
+  references: {
+    title: string;
+    subtitle: string;
+    cta: string;
+    resultLabel: string;
+    items: readonly { title: string; location: string; type: string; description: string; result: string }[];
+  };
   about: {
     title: string;
     intro: string;

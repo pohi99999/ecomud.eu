@@ -12,72 +12,12 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const serviceDetails = [
-  {
-    key: 'bio' as const,
-    icon: Droplets,
-    color: '#40916C',
-    items: [
-      'Biologická úprava jazier – redukcia organického zaťaženia, prevencia kvitnenia rias',
-      'Údržba priemyselných nádrží – biologická starostlivosť sedimentačných a chladiacich nádrží',
-      'Úprava hnojiskových zásobníkov – rozklad organických látok, redukcia zápachu',
-      'Dezodorácia kanálov – biologická úprava zápachu kanalizácií a otvorených vodných tokov',
-      'Zlepšenie kvality zavlažovacej vody – biologické metódy zlepšenia kvality vody',
-    ],
-    target: 'Samosprávy, rybárske hospodárstva, priemyselní prevádzkovatelia, poľnohospodárske podniky, prevádzkovatelia ČOV.',
-  },
-  {
-    key: 'dehydration' as const,
-    icon: Factory,
-    color: '#2D6A4F',
-    items: [
-      'Odvodňovacie vankúše – geotextilné vankúše rôznych veľkostí pre gravitačné odvodnenie',
-      'Odvodňovacie korámy a kontajnery – systémy pre väčšie objemy, aj pre lokálne odvodnenie',
-      'Textilné odvodňovacie systémy – trvanlivé riešenia pre priemyselné a komunálne aplikácie',
-      'Brehová ochrana – protieerózna ochrana, stabilizácia brehov geotextilnou technológiou',
-      'Stabilizácia dna – prevencia pohybu dnového materiálu a ochrana vodných stavieb',
-    ],
-    target: 'Stavebné firmy, vodohospodárske správy, samosprávy, ČOV, banské spoločnosti.',
-  },
-  {
-    key: 'automated' as const,
-    icon: Cpu,
-    color: '#1B4332',
-    items: [
-      'Automatizované bagovanie v priemyselných sedimentáciach – programovateľné a diaľkovo ovládané stroje',
-      'Diaľkovo ovládaná práca v nebezpečnom prostredí – chemické závody, elektrárne',
-      'Pravidelné programy údržby – plánovaná preventívna čistenie nádrží',
-      'Logistika nakladania s kalmi – preprava, odvodnenie a uloženie odstráneného kalu',
-    ],
-    target: 'Chemické a petrochemické závody, elektrárne, kovospracujúce podniky, ČOV.',
-  },
-  {
-    key: 'smartlake' as const,
-    icon: Brain,
-    color: '#40916C',
-    items: [
-      'Digitálny denník – denné záznamy textom, obrázkami alebo hlasom, dostupný aj z mobilu',
-      'Interaktívna mapa – body na mape vodného telesa s priloženými informáciami a fotkami',
-      'Správa úloh a upomienky – plánovanie pravidelnej údržby, automatické pripomienky',
-      'AI-asistent – inteligentné vyhľadávanie vo vedomostnej báze vodného telesa',
-      'Generovanie správ – automatizované úradné a interné správy z vložených dát',
-    ],
-    target: 'Rybárske hospodárstva, rybárske spolky, samosprávy, vodohospodárske organizácie, výskumné ústavy.',
-    future: 'IoT senzorová integrácia (bóje na meranie kvality vody, snímače teploty a kyslíka), prediktívna analytika a modul rybárskeho turizmu.',
-  },
-  {
-    key: 'survey' as const,
-    icon: Ruler,
-    color: '#2D6A4F',
-    items: [
-      'Bodové meranie hrúbky kalov – rýchle merania na mieste',
-      'Ultrazvukové zobrazovanie dna – detailné profily a 3D modely pomocou USV technológie',
-      'Odber vzoriek vody a kalov – vzorky pre laboratórnu analýzu',
-      'Dnové morfologické mapovanie – mapovanie tvaru, hĺbky a zloženia dna',
-      'Diagnostické správy – podrobné hodnotenie s odporúčaniami a rozpočtom',
-    ],
-    target: 'Všetky sektory: samosprávy, priemyselné závody, poľnohospodárstvo, rybárske hospodárstva, environmentálne úrady, projekčné kancelárie.',
-  },
+const serviceConfig = [
+  { key: 'bio' as const, icon: Droplets, color: '#40916C' },
+  { key: 'dehydration' as const, icon: Factory, color: '#2D6A4F' },
+  { key: 'automated' as const, icon: Cpu, color: '#1B4332' },
+  { key: 'smartlake' as const, icon: Brain, color: '#40916C' },
+  { key: 'survey' as const, icon: Ruler, color: '#2D6A4F' },
 ];
 
 export default function ServicesPage() {
@@ -106,13 +46,13 @@ export default function ServicesPage() {
       <section className="py-12 lg:py-16 bg-[#FAFDF7]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.p {...fadeInUp} className="text-lg text-[#4a5568] leading-relaxed">
-            ECOMUD ponúka riešenia v piatich vzájomne sa dopĺňajúcich oblastiach služieb. Každá sa zameriava na iný aspekt úpravy vody a kalov – spoločne pokrývajú celý životný cyklus vodných telies a priemyselných nádrží.
+            {t.services.introDetail}
           </motion.p>
         </div>
       </section>
 
       {/* Service details */}
-      {serviceDetails.map((service, idx) => {
+      {serviceConfig.map((service, idx) => {
         const serviceT = t.services[service.key];
         const Icon = service.icon;
         const isEven = idx % 2 === 0;
@@ -143,9 +83,9 @@ export default function ServicesPage() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   <div>
-                    <h3 className="text-lg font-semibold text-[#1B4332] mb-4">Služby</h3>
+                    <h3 className="text-lg font-semibold text-[#1B4332] mb-4">{t.services.detailsLabel}</h3>
                     <ul className="space-y-3">
-                      {service.items.map((item, i) => (
+                      {serviceT.items.map((item, i) => (
                         <li key={i} className="flex gap-3">
                           <CheckCircle className="w-5 h-5 text-[#40916C] flex-shrink-0 mt-0.5" />
                           <span className="text-[#4a5568] text-sm leading-relaxed">{item}</span>
@@ -155,13 +95,13 @@ export default function ServicesPage() {
                   </div>
 
                   <div>
-                    <h3 className="text-lg font-semibold text-[#1B4332] mb-4">Pre koho?</h3>
-                    <p className="text-[#4a5568] leading-relaxed">{service.target}</p>
+                    <h3 className="text-lg font-semibold text-[#1B4332] mb-4">{t.services.targetLabel}</h3>
+                    <p className="text-[#4a5568] leading-relaxed">{serviceT.target}</p>
 
-                    {service.future && (
+                    {service.key === 'smartlake' && (
                       <div className="mt-6">
-                        <h3 className="text-lg font-semibold text-[#1B4332] mb-3">Budúci vývoj</h3>
-                        <p className="text-[#4a5568] leading-relaxed">{service.future}</p>
+                        <h3 className="text-lg font-semibold text-[#1B4332] mb-3">{t.services.futureLabel}</h3>
+                        <p className="text-[#4a5568] leading-relaxed">{t.services.smartlake.future}</p>
                       </div>
                     )}
 

@@ -144,7 +144,7 @@ export default function HomePage() {
                       {service.short}
                     </p>
                     <span className="mt-4 inline-flex items-center gap-1 text-[#40916C] text-sm font-medium group-hover:gap-2 transition-all">
-                      Viac
+                      {t.services.more}
                       <ArrowRight size={16} />
                     </span>
                   </Link>
